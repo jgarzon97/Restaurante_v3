@@ -1,0 +1,44 @@
+<div style="text-align: center;">
+    <h1><span class="badge bg-secondary">LISTADO DE PRODUCTOS</span></h1>
+
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr style="text-align: center;">
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let producto of productos; let i = index" style="text-align: center;">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.estado }}</td>
+            <td>{{ producto.nombre_categoria }}</td>
+            <td>{{ producto.imagen }}</td>
+            <td>
+                <!-- Ícono de editar -->
+                <a href="#" title="Editar">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                &nbsp; <!-- Espacio entre íconos -->
+                <!-- Ícono de eliminar -->
+                <a href="#" title="Eliminar">
+                    <i class="bi bi-trash"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

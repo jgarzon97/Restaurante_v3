@@ -1,0 +1,19 @@
+<div class="body">
+    <div class="wrapper">
+        <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="Ingresar()" class="login">
+            <p class="title">Log in</p>
+            <input type="text" placeholder="Username" autofocus autocomplete="off" formControlName="user_usuario" />
+            <i class="fa fa-user"></i>
+            <input type="password" placeholder="Password" autocomplete="off" formControlName="pass_usuario" />
+            <i class="fa fa-key"></i>
+            <button type="submit" [disabled]="form.invalid">
+                <i class="spinner"></i>
+                <span class="state">Log in</span>
+            </button>
+        </form>
+        <div class="spinner-border text-primary" role="status" *ngIf="loading">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <div class="spinner"></div>
+    </div>
+</div>

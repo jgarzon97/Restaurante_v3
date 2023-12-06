@@ -1,0 +1,17 @@
+<div class="container-fluid">
+    <div class="row">
+        <div style="padding: 10px;" class="col" *ngFor=" let mesa of mesas; let i = index">
+            <div class="card" style="width: 200px; height: 190px;">
+                <div class="card-body">
+                    <h5 class="card-title text-center"><small class="text-body-secondary">MESA #
+                        </small>{{mesa.num_mesa}}</h5>
+                    <hr>
+                    <p class="card-text"><small class="text-body-secondary">Estado:
+                        </small>{{mesa.estado}}</p>
+                    <p class="card-text"><small class="text-body-secondary">Capacidad:
+                        </small>{{mesa.capacidad}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

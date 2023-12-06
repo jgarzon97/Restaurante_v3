@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row">
+        <div style="padding: 10px;" class="col" *ngFor=" let mesa of mesas; let i = index">
+            <div class="card" style="width: 200px; height: 240px;">
+                <div class="card-body">
+                    <h5 class="card-title text-center"><small class="text-body-secondary">MESA #
+                        </small>{{mesa.num_mesa}}</h5>
+                    <hr>
+                    <p class="card-text"><small class="text-body-secondary">Estado:
+                        </small>{{mesa.estado}}</p>
+                    <p class="card-text"><small class="text-body-secondary">Capacidad:
+                        </small>{{mesa.capacidad}}</p>
+                    <div class="container">
+                        <div class="row align-items-start">
+                            <button type="button" class="btn btn-success btn-sm"
+                                (click)="modificar(mesa.id_mesa)" title="Editar mesa">Editar</button>
+                        </div>
+                        <div class="row align-items-start" style="padding-top: 5px;">
+                            <button type="button" class="btn btn-danger btn-sm"
+                                (click)="eliminar(mesa.id_mesa)" title="Desactivar mesa">Desactivar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding: 10px;" class="col">
+            <div class="card" style="width: 200px; height: 240px; background-color: rgba(100, 100, 100, 0.1); border: none;">
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <i class="bi bi-plus-circle-fill" style="font-size: 3em; cursor: pointer;"
+                        (click)="addmesa()" title="Crea mesa"
+                    ></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
