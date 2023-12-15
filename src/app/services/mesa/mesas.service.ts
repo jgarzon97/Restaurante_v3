@@ -13,22 +13,34 @@ export class MesasService {
   constructor(private http: HttpClient) { }
 
   // Obtener todas las mesas
-  getMesas(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/mesas`);
+  getMesas(): Observable<Mesa[]> {
+    return this.http.get<Mesa[]>(`${this.apiUrl}/mesas`);
   }
 
   // Obtener las mesas disponibles
-  getMesaEstado(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/mesasDisponible`);
+  getMesaEstado(): Observable<Mesa[]> {
+    return this.http.get<Mesa[]>(`${this.apiUrl}/mesasDisponible`);
+  }
+
+  // Crea una mesa
+  createMesa(mesaData: []): Observable<Mesa> {
+    return this.http.post<Mesa>(`${this.apiUrl}/mesa`, mesaData);
   }
 
   // Actualiza los detalle de la mesa
-  updateMesa(id: number, mesaData: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}/mesa/${id}`, mesaData);
+  updateMesa(id: number, mesaData: Mesa): Observable<Mesa> {
+    return this.http.put<Mesa>(`${this.apiUrl}/mesa/${id}`, mesaData);
   }
 
   // Elimina una mesa
-  deleteMesa(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/mesa/${id}`);
+  deleteMesa(id: number): Observable<Mesa> {
+    return this.http.delete<Mesa>(`${this.apiUrl}/mesa/${id}`);
   }
+}
+
+export interface Mesa {
+  id_mesa: number;
+  num_mesa: number;
+  capacidad: number;
+  estado: string;
 }

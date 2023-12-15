@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { MesasService } from 'src/app/services/mesa/mesas.service';
+import { Mesa, MesasService } from 'src/app/services/mesa/mesas.service';
+import { PedidosService } from 'src/app/services/pedido/pedidos.service';
+
 
 @Component({
   selector: 'app-admin-mesas',
@@ -8,16 +10,25 @@ import { MesasService } from 'src/app/services/mesa/mesas.service';
   styleUrls: ['./admin-mesas.component.css']
 })
 export class AdminMesasComponent {
-  mesas: any[] = [];
+  mesas: Mesa[] = [];
   actualizacion: any;
   busqueda: string = '';
+  id_usuario: number | null = null;
+
+  nuevaMesa: any = {
+    num_mesa: null,
+    capacidad: null,
+    estado: 'Disponible'
+  };
 
   constructor(
     private mesasService : MesasService,
+    private pedidosService : PedidosService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.id_usuario = this.getUserIdFromLocalStorage();
     const isAuthenticated = localStorage.getItem('id_rol');
     if (!isAuthenticated) {
       console.log('No puedes ingresar, Inicia sesión');
@@ -25,6 +36,11 @@ export class AdminMesasComponent {
     } else {
       this.visualizar();
     }
+  }
+
+  getUserIdFromLocalStorage(): number | null {
+    const userIdString = localStorage.getItem('id_usuario');
+    return userIdString ? +userIdString : null;
   }
 
   visualizar() {
@@ -35,8 +51,29 @@ export class AdminMesasComponent {
     });
   }
 
-  addmesa() {
+  crearPedido(id_usuario: number | null, mesas: any): void {
+    if (id_usuario === null) {
+      console.error('El id_usuario no está definido');
+      return;
+    }
 
+    this.pedidosService.createPedido(id_usuario, mesas).subscribe(() => {
+      alert('Se creó el pedido correctamente');
+      this.visualizar();
+    });
+  }
+  
+  addmesa(): void {
+    this.mesasService.createMesa(this.nuevaMesa).subscribe(
+      (respuesta: any) => {
+        console.log('Mesa creada:', respuesta);
+        this.visualizar();
+      },
+      (error: any) => {
+        console.error('Error al crear la mesa:', error);
+        // Manejar el error si es necesario
+      }
+    );
   }
 
   modificar(dato: number) {
@@ -46,4 +83,5 @@ export class AdminMesasComponent {
   eliminar(dato: number) {
 
   }
+  
 }

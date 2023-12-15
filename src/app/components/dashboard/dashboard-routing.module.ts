@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+// Components
 import { DashboardComponent } from './dashboard.component';
 import { MesasComponent } from './mesas/mesas.component';
 import { AdminMesasComponent } from './mesas/admin-mesas/admin-mesas.component';

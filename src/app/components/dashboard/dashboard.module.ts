@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
 // Componentes
@@ -35,7 +39,10 @@ import { AdminProductosComponent } from './productos/admin-productos/admin-produ
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class DashboardModule { }

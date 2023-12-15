@@ -1,34 +1,71 @@
 <div class="container-fluid">
     <div class="row">
-        <div style="padding: 10px;" class="col" *ngFor=" let mesa of mesas; let i = index">
+        <!-- Listado de Mesas -->
+        <div style="padding: 10px;" class="col" *ngFor="let mesa of mesas; let i = index">
             <div class="card" style="width: 200px; height: 240px;">
                 <div class="card-body">
-                    <h5 class="card-title text-center"><small class="text-body-secondary">MESA #
-                        </small>{{mesa.num_mesa}}</h5>
+                    <h5 class="card-title text-center">
+                        <small class="text-body-secondary">MESA #</small>{{mesa.num_mesa}}
+                    </h5>
                     <hr>
-                    <p class="card-text"><small class="text-body-secondary">Estado:
-                        </small>{{mesa.estado}}</p>
-                    <p class="card-text"><small class="text-body-secondary">Capacidad:
-                        </small>{{mesa.capacidad}}</p>
+                    <p class="card-text" ><small class="text-body-secondary">Estado:</small>{{mesa.estado}}</p>
+                    <p class="card-text"><small class="text-body-secondary">Capacidad:</small>{{mesa.capacidad}}</p>
                     <div class="container">
                         <div class="row align-items-start">
-                            <button type="button" class="btn btn-success btn-sm"
-                                (click)="modificar(mesa.id_mesa)" title="Editar mesa">Editar</button>
+                            <!-- Aquí se aplica la lógica para mostrar u ocultar el botón "Reservar" -->
+                            <button *ngIf="mesa.estado === 'Disponible'" type="button" class="btn btn-success btn-sm"
+                                (click)="crearPedido(id_usuario, mesa.id_mesa)" title="Reservar mesa">Reservar</button>
                         </div>
                         <div class="row align-items-start" style="padding-top: 5px;">
-                            <button type="button" class="btn btn-danger btn-sm"
-                                (click)="eliminar(mesa.id_mesa)" title="Desactivar mesa">Desactivar</button>
+                            <div class="d-flex flex-row">
+                                <button type="button" class="btn btn-warning btn-sm me-2"
+                                    (click)="modificar(mesa.id_mesa)" title="Editar mesa">Editar</button>
+                                <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(mesa.id_mesa)"
+                                    title="Desactivar mesa">Desactivar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Nueva Mesa -->
         <div style="padding: 10px;" class="col">
-            <div class="card" style="width: 200px; height: 240px; background-color: rgba(100, 100, 100, 0.1); border: none;">
+            <div class="card"
+                style="width: 200px; height: 240px; background-color: rgba(100, 100, 100, 0.1); border: none;">
                 <div class="card-body d-flex justify-content-center align-items-center">
-                    <i class="bi bi-plus-circle-fill" style="font-size: 3em; cursor: pointer;"
-                        (click)="addmesa()" title="Crea mesa"
-                    ></i>
+                    <i class="bi bi-plus-circle-fill" style="font-size: 3em; cursor: pointer;" title="Crea mesa"
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
+                </div>
+            </div>
+        </div>
+        <!-- Modal para Mesa -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Nueva Mesa</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="numMesa" class="form-label">Número de Mesa:</label>
+                                <input type="number" class="form-control" id="numMesa" name="numMesa" min="0"
+                                    [(ngModel)]="nuevaMesa.num_mesa">
+                            </div>
+                            <div class="mb-3">
+                                <label for="capacidad" class="form-label">Capacidad:</label>
+                                <input type="number" class="form-control" id="capacidad" name="capacidad" min="0"
+                                    [(ngModel)]="nuevaMesa.capacidad">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" (click)="addmesa()">Agregar</button>
+                    </div>
                 </div>
             </div>
         </div>

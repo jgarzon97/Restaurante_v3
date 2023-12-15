@@ -1,11 +1,12 @@
 <div style="text-align: center;">
     <h1><span class="badge bg-secondary">LISTADO DE PRODUCTOS</span></h1>
-
-    <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="d-flex" role="search" (ngSubmit)="buscarProductos()">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="busqueda" name="search">
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
+    <hr>
 </div>
+
 <table class="table table-hover">
     <thead>
         <tr style="text-align: center;">
