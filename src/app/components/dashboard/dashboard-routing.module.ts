@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { MesasComponent } from './mesas/mesas.component';
 import { AdminMesasComponent } from './mesas/admin-mesas/admin-mesas.component';
+import { NuevaMesaComponent } from './mesas/admin-mesas/nueva-mesa/nueva-mesa.component';
 import { ProductosComponent } from './productos/productos.component';
 import { AdminProductosComponent } from './productos/admin-productos/admin-productos.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
@@ -16,8 +17,9 @@ import { ClienteComponent } from './pagos/cliente/cliente.component';
 const routes: Routes = [
   {
     path: '', component: DashboardComponent, children: [
-      { path: 'admin/mesas', component: AdminMesasComponent },
       { path: 'mesas', component: MesasComponent },
+      { path: 'admin/mesas', component: AdminMesasComponent },
+      { path: 'admin/mesas/nueva/:id_mesa', component: NuevaMesaComponent },
       { path: 'admin/productos', component: AdminProductosComponent },
       { path: 'productos', component: ProductosComponent },
       { path: 'pedidos', component: PedidosComponent },

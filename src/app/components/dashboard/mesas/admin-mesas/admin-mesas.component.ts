@@ -76,11 +76,12 @@ export class AdminMesasComponent {
     );
   }
 
-  modificar(dato: number) {
-
+  modificar(id_mesa: number) {
+    console.log(id_mesa)
+    this.router.navigate(['admin/mesas/nueva/', id_mesa]);
   }
 
-  eliminar(dato: number) {
+  eliminar(id_mesa: number) {
 
   }
   

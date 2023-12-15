@@ -2,14 +2,14 @@
     <div class="row">
         <!-- Listado de Mesas -->
         <div style="padding: 10px;" class="col" *ngFor="let mesa of mesas; let i = index">
-            <div class="card" style="width: 200px; height: 240px;">
+            <div class="card" style="width: 200px; height: 240px; background-color: rgba(100, 100, 100, 0.1);">
                 <div class="card-body">
                     <h5 class="card-title text-center">
                         <small class="text-body-secondary">MESA #</small>{{mesa.num_mesa}}
                     </h5>
                     <hr>
-                    <p class="card-text" ><small class="text-body-secondary">Estado:</small>{{mesa.estado}}</p>
-                    <p class="card-text"><small class="text-body-secondary">Capacidad:</small>{{mesa.capacidad}}</p>
+                    <p class="card-text"><small class="text-body-secondary">Estado: </small>{{mesa.estado}}</p>
+                    <p class="card-text"><small class="text-body-secondary">Capacidad: </small>{{mesa.capacidad}}</p>
                     <div class="container">
                         <div class="row align-items-start">
                             <!-- Aquí se aplica la lógica para mostrar u ocultar el botón "Reservar" -->
@@ -20,15 +20,15 @@
                             <div class="d-flex flex-row">
                                 <button type="button" class="btn btn-warning btn-sm me-2"
                                     (click)="modificar(mesa.id_mesa)" title="Editar mesa">Editar</button>
-                                <button type="button" class="btn btn-danger btn-sm" (click)="eliminar(mesa.id_mesa)"
-                                    title="Desactivar mesa">Desactivar</button>
+                                <button type="button" class="btn btn-danger btn-sm" 
+                                    (click)="eliminar(mesa.id_mesa)" title="Eliminar">Desactivar</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Nueva Mesa -->
         <div style="padding: 10px;" class="col">
             <div class="card"
@@ -71,3 +71,4 @@
         </div>
     </div>
 </div>
+
