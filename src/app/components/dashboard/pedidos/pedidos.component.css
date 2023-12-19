@@ -1,0 +1,22 @@
+/* Estilos para las celdas que parecen botones */
+.pendiente,
+.cancelado {
+  display: flexbox;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Estilo específico para el estado "Pendiente" */
+.pendiente {
+  color: white;
+  background-color: red;
+}
+
+/* Estilo específico para el estado "Cancelado" */
+.cancelado {
+  color: white;
+  background-color: green;
+}

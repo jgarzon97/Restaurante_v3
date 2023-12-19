@@ -1,30 +1,26 @@
-<div style="text-align: center;">
-    <h1><span class="badge bg-secondary">LISTADO DE PEDIDOS</span></h1>
-    <hr>
-</div>
 
 <table class="table table-hover">
     <thead>
         <tr style="text-align: center;">
             <th scope="col">#</th>
             <th scope="col">Fecha</th>
-            <th scope="col">Hora</th>
+            <th scope="col">Total</th>
             <th scope="col">Estado</th>
-            <th scope="col">Usuario</th>
-            <th scope="col"># Mesa</th>
+            <th scope="col">Pedido</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let pedido of pedidos; let i = index" style="text-align: center;">
+        <tr *ngFor="let factura of facturas; let i = index" style="text-align: center;">
             <th scope="row">{{ i + 1 }}</th>
-            <td>{{ pedido.fecha }}</td>
-            <td>{{ pedido.hora }}</td>
-           
-            <td>{{ pedido.id_usuario }}</td>
-            <td>{{ pedido.id_mesa }}</td>
-            <td [ngClass]="pedido.estado === 'Pendiente' ? 'pendiente' : 'cancelado'">
-                {{ pedido.estado }}
-            </td>
+            <td>{{ factura.fecha }}</td>
+            <td>{{ factura.total }}</td>
+            <td>{{ factura.estado_de_pago }}</td>
+            <td>{{ factura.id_pedido }}</td>
+            <td>{{ factura.nombre }}</td>
+            <td>{{ factura.apellido }}</td>
+
             <td>
                 <!-- Ícono de Listar -->
                 <a href="#" title="Listar Productos">
