@@ -17,6 +17,10 @@ export class MesasService {
     return this.http.get<Mesa[]>(`${this.apiUrl}/mesas`);
   }
 
+  getMesa(id: number): Observable<Mesa[]> {
+    return this.http.get<Mesa[]>(`${this.apiUrl}/mesa/${id}`);
+  }
+
   // Obtener las mesas disponibles
   getMesaEstado(): Observable<Mesa[]> {
     return this.http.get<Mesa[]>(`${this.apiUrl}/mesasDisponible`);

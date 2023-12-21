@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Mesa, MesasService } from 'src/app/services/mesa/mesas.service';
 import { PedidosService } from 'src/app/services/pedido/pedidos.service';
 
@@ -22,10 +22,24 @@ export class AdminMesasComponent {
   };
 
   constructor(
-    private mesasService : MesasService,
-    private pedidosService : PedidosService,
-    private router: Router
-  ) { }
+    private mesasService: MesasService,
+    private pedidosService: PedidosService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
+    const mesaId = this.activatedRoute.snapshot.params['id_mesa'];
+
+    if (mesaId !== undefined) {
+      console.log('ID del vehículo a editar: ' + mesaId);
+      this.cargarDatos(mesaId);
+    } else {
+      console.log('Selecciona la mesa para Editar');
+    }
+  }  
+
+  cargarDatos(vehiculoId: number) {
+
+  }
 
   ngOnInit(): void {
     this.id_usuario = this.getUserIdFromLocalStorage();
@@ -43,6 +57,7 @@ export class AdminMesasComponent {
     return userIdString ? +userIdString : null;
   }
 
+  // Muestra todas la Mesas
   visualizar() {
     this.mesasService.getMesas().subscribe(response => {
       this.mesas = response;
@@ -51,6 +66,7 @@ export class AdminMesasComponent {
     });
   }
 
+  // Función para agregar un Pedido seleccionando una Mesa
   crearPedido(id_usuario: number | null, mesas: any): void {
     if (id_usuario === null) {
       console.error('El id_usuario no está definido');
@@ -62,7 +78,8 @@ export class AdminMesasComponent {
       this.visualizar();
     });
   }
-  
+
+  // Función para agregar un Mesa
   addmesa(): void {
     this.mesasService.createMesa(this.nuevaMesa).subscribe(
       (respuesta: any) => {
@@ -71,18 +88,18 @@ export class AdminMesasComponent {
       },
       (error: any) => {
         console.error('Error al crear la mesa:', error);
-        // Manejar el error si es necesario
       }
     );
   }
 
+  // Función para modificar la mesa con el id_mesa específico
   modificar(id_mesa: number) {
-    console.log(id_mesa)
-    this.router.navigate(['admin/mesas/nueva/', id_mesa]);
+    console.log(`Modo edición de la Mesa ${id_mesa}`)
+    
   }
-
+  
   eliminar(id_mesa: number) {
 
   }
-  
+
 }

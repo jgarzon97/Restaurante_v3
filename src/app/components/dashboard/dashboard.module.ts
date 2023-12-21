@@ -12,7 +12,6 @@ import { RolesComponent } from './roles/roles.component';
 import { ProductosComponent } from './productos/productos.component';
 import { NuevosProductosComponent } from './productos/nuevos-productos/nuevos-productos.component';
 import { MesasComponent } from './mesas/mesas.component';
-import { NuevaMesaComponent } from './mesas/admin-mesas/nueva-mesa/nueva-mesa.component';
 import { AdminMesasComponent } from './mesas/admin-mesas/admin-mesas.component';
 import { NuevosComponent } from './roles/nuevos/nuevos.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
@@ -29,7 +28,6 @@ import { FacturasComponent } from './pedidos/facturas/facturas.component';
     RolesComponent,
     NuevosProductosComponent,
     MesasComponent,
-    NuevaMesaComponent,
     AdminMesasComponent,
     NuevosComponent,
     PedidosComponent,
