@@ -37,7 +37,7 @@ export class AdminMesasComponent {
     }
   }  
 
-  cargarDatos(vehiculoId: number) {
+  cargarDatos(mesaId: number) {
 
   }
 

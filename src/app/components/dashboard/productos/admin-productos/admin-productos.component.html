@@ -1,8 +1,9 @@
 <div style="text-align: center;">
-    <h1><span class="badge bg-secondary">LISTADO DE PRODUCTOS</span></h1>
+    <h1><span class="badge bg-secondary">STOCK DE PRODUCTOS</span></h1>
     <form class="d-flex" role="search" (ngSubmit)="buscarProductos()">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="busqueda" name="search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        Nombre del Producto:
+        <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" [(ngModel)]="busqueda"
+            name="busqueda" aria-label="Search" style="margin-right: 10px;" (ngModelChange)="buscarProductos()">
     </form>
     <hr>
 </div>
@@ -31,12 +32,12 @@
             <td>{{ producto.imagen }}</td>
             <td>
                 <!-- Ícono de editar -->
-                <a href="#" title="Editar">
+                <a title="Editar">
                     <i class="bi bi-pencil-square"></i>
                 </a>
                 &nbsp; <!-- Espacio entre íconos -->
                 <!-- Ícono de eliminar -->
-                <a href="#" title="Eliminar">
+                <a title="Eliminar">
                     <i class="bi bi-trash"></i>
                 </a>
             </td>

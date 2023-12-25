@@ -21,6 +21,14 @@ export class PedidosService {
   getPedidos(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(`${this.apiUrl}/pedidos`);
   }
+
+  updatePedido(id: number, pedidoData: Pedido): Observable<Pedido> {
+    return this.http.put<Pedido>(`${this.apiUrl}/pedido/${id}`, pedidoData);
+  }
+
+  deletePedido(id: number): Observable<Pedido> {
+    return this.http.delete<Pedido>(`${this.apiUrl}/pedido/${id}`);
+  }
 }
 
 export interface Pedido {

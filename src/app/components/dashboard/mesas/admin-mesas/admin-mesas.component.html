@@ -12,16 +12,16 @@
                     <p class="card-text"><small class="text-body-secondary">Capacidad: </small>{{mesa.capacidad}}</p>
                     <div class="container">
                         <div class="row align-items-start">
-                            <!-- Aquí se aplica la lógica para mostrar u ocultar el botón "Reservar" -->
                             <button *ngIf="mesa.estado === 'Disponible'" type="button" class="btn btn-success btn-sm"
                                 (click)="crearPedido(id_usuario, mesa.id_mesa)" title="Reservar mesa">Reservar</button>
                         </div>
                         <div class="row align-items-start" style="padding-top: 5px;">
                             <div class="d-flex flex-row">
-                                <button type="button" class="btn btn-warning btn-sm me-2"
+                                <button *ngIf="mesa.estado !== 'Ocupada'" type="button" class="btn btn-warning btn-sm me-2"
                                     (click)="modificar(mesa.id_mesa)" title="Editar mesa" data-bs-toggle="modal"
                                     data-bs-target="#modal_editar_mesa">Editar</button>
-                                <button type="button" class="btn btn-danger btn-sm" title="Eliminar">Desactivar</button>
+                                <button *ngIf="mesa.estado !== 'Ocupada'" type="button" class="btn btn-danger btn-sm"
+                                    title="Eliminar" (click)="eliminar(mesa.id_mesa)" [disabled]="mesa.estado === 'Ocupada'">Desactivar</button>
                             </div>
                         </div>
                     </div>

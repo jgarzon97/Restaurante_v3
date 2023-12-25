@@ -19,7 +19,6 @@
             <th scope="row">{{ i + 1 }}</th>
             <td>{{ pedido.fecha }}</td>
             <td>{{ pedido.hora }}</td>
-           
             <td>{{ pedido.id_usuario }}</td>
             <td>{{ pedido.id_mesa }}</td>
             <td [ngClass]="pedido.estado === 'Pendiente' ? 'pendiente' : 'cancelado'">
@@ -27,13 +26,13 @@
             </td>
             <td>
                 <!-- Ícono de Listar -->
-                <a href="#" title="Listar Productos">
-                    <i class="bi bi-pencil-square"></i>
+                <a title="Detalles Pedido">
+                    <i class="bi bi-pencil-square" (click)="verDetallePedido(pedido.id_pedido)"></i>
                 </a>
                 &nbsp; <!-- Espacio entre íconos -->
                 <!-- Ícono de eliminar -->
-                <a href="#" title="Eliminar">
-                    <i class="bi bi-trash"></i>
+                <a title="Eliminar">
+                    <i class="bi bi-trash" (click)="borrarPedido(pedido.id_pedido)"></i>
                 </a>
             </td>
         </tr>
