@@ -20,6 +20,7 @@ import { PagosComponent } from './pagos/pagos.component';
 import { ClienteComponent } from './pagos/cliente/cliente.component';
 import { AdminProductosComponent } from './productos/admin-productos/admin-productos.component';
 import { FacturasComponent } from './pedidos/facturas/facturas.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FacturasComponent } from './pedidos/facturas/facturas.component';
     ClienteComponent,
     AdminProductosComponent,
     FacturasComponent,
+    UsuarioComponent,
   ],
   imports: [
     CommonModule,

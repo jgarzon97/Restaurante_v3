@@ -13,6 +13,7 @@ import { RolesComponent } from './roles/roles.component';
 import { PagosComponent } from './pagos/pagos.component';
 import { ClienteComponent } from './pagos/cliente/cliente.component';
 import { FacturasComponent } from './pedidos/facturas/facturas.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,8 @@ const routes: Routes = [
       { path: 'admin/roles', component: RolesComponent },
       { path: 'pagos', component: PagosComponent },
       { path: 'clientes', component: ClienteComponent },
-      { path: 'facturas', component: FacturasComponent }
+      { path: 'facturas', component: FacturasComponent },
+      { path: 'usuario/:id_usuario', component: UsuarioComponent }
     ]
   }
 ];
