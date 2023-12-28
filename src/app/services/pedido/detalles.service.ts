@@ -11,30 +11,36 @@ export class DetallesService {
 
   constructor(private http: HttpClient) { }
 
-  getPedido_Producto(): Observable<Detalle[]> {
+  getPedido_Productos(): Observable<Detalle[]> {
     return this.http.get<Detalle[]>(`${this.apiUrl}/pedidoProductos`);
   }
 
-  getPedido_Productos(id: number): Observable<Detalle> {
-    return this.http.get<Detalle>(`${this.apiUrl}/pedidoProducto/${id}`);
+  getPedido_Producto(id: number): Observable<Detalle[]> {
+    return this.http.get<Detalle[]>(`${this.apiUrl}/pedidoProducto/${id}`);
   }
 
-  createPedido_Producto(pedidoData: Detalle): Observable<Detalle> {
-    return this.http.post<Detalle>(`${this.apiUrl}/pedidoProducto`, pedidoData);
+  getDetalles_Productos(id: number): Observable<Detalle[]> {
+    return this.http.get<Detalle[]>(`${this.apiUrl}/detallesProductos/${id}`);
   }
 
-  updatePedido_Producto(id: number, pedidoData: Detalle): Observable<Detalle> {
-    return this.http.put<Detalle>(`${this.apiUrl}/pedidoProducto/${id}`, pedidoData);
+  createPedido_Producto(pedidoData: Detalle[]): Observable<Detalle[]> {
+    return this.http.post<Detalle[]>(`${this.apiUrl}/pedidoProducto`, pedidoData);
   }
 
-  deletePedido_Producto(id: number): Observable<Detalle> {
-    return this.http.delete<Detalle>(`${this.apiUrl}/pedidoProducto/${id}`);
+  updatePedido_Producto(id: number, pedidoData: Detalle[]): Observable<Detalle[]> {
+    return this.http.put<Detalle[]>(`${this.apiUrl}/pedidoProducto/${id}`, pedidoData);
+  }
+
+  deletePedido_Producto(id: number): Observable<Detalle[]> {
+    return this.http.delete<Detalle[]>(`${this.apiUrl}/pedidoProducto/${id}`);
   }
 }
 
 export interface Detalle {
   id_pedido: number;
-  id_producto: number;
-  cantidad: number;
+  nombre_producto: string;
+  precio_unitario: number;
+  cantidad_total: number;
+  precio_total: number;
   detalle: string;
 }
