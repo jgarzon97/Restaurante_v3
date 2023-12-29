@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Detalle, DetallesService } from 'src/app/services/pedido/detalles.service';
+import { Producto, ProductosService } from 'src/app/services/producto/productos.service';
 
 @Component({
   selector: 'app-detalles',
@@ -10,11 +11,14 @@ import { Detalle, DetallesService } from 'src/app/services/pedido/detalles.servi
 
 export class DetallesComponent {
   detalles: Detalle[] = [];
+  productos: Producto[] = [];
+  selectedProductId: number | undefined;
   totalPrecio: number = 0;
   numeroRuta: number = 0;
 
   constructor(
     private detallesService: DetallesService,
+    private productosService: ProductosService,
     private route: ActivatedRoute
   ) { }
 
@@ -23,6 +27,14 @@ export class DetallesComponent {
     this.route.params.subscribe(params => {
       this.numeroRuta = +params['id_pedido'];
     });
+    this.productosService.getProductos().subscribe(productos => {
+      this.productos = productos;
+    });
+  }
+
+  onChange(event: any) {
+    this.selectedProductId = event.target.value;
+    console.log('ID seleccionado:', this.selectedProductId);
   }
 
   obtenerDetalles() {
