@@ -91,6 +91,7 @@ export class AdminMesasComponent {
       }
     );
   }
+  
 
   // Función para modificar la mesa con el id_mesa específico
   modificar(id_mesa: number) {

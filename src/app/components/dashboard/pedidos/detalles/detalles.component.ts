@@ -14,17 +14,17 @@ export class DetallesComponent {
   detalles: Detalle[] = [];
   detalle_pedido: Detalle_pedido[] = []
   productos: Producto[] = [];
+  id_pedido: number | null = null;
 
   selectedProductId: number | undefined;
 
   totalPrecio: number = 0;
   numeroRuta: number = 0;
 
-  formData = {
-    id_pedido: 0,
-    id_producto: 0,
-    cantidad: 0,
-    detalle: ''
+  detallesPedido: any = {
+    id_producto: null,
+    cantidad: null,
+    detalle: ' '
   };
 
   constructor(
@@ -34,11 +34,12 @@ export class DetallesComponent {
   ) { }
 
   ngOnInit(): void {
-    this.obtenerDetalles();
+    // Captura el id_pedido
     this.route.params.subscribe(params => {
       const id_pedido = params['id_pedido'];
-      this.formData.id_pedido = id_pedido;
+      this.id_pedido = Number(id_pedido);
     });
+    // Usa el servicio de Producto para mostrarlo
     this.productosService.getProductos().subscribe(productos => {
       this.productos = productos;
     });
@@ -48,30 +49,26 @@ export class DetallesComponent {
     this.selectedProductId = event.target.value;
   }
 
-  submitForm() {
-    if (this.selectedProductId && this.formData.cantidad && this.formData.detalle) {
-      const pedidoProductoData: Detalle_pedido[] = [{
-        id_pedido: Number(this.formData.id_pedido),
-        id_producto: Number(this.selectedProductId),
-        cantidad: this.formData.cantidad,
-        detalle: this.formData.detalle,
-      }];
-  
-      this.detallesService.createPedido_Producto(pedidoProductoData).subscribe(
-        (response) => {
-          console.log('Respuesta del servidor:', response);
-          console.log(pedidoProductoData);
-          alert(`Los detalles se ingresaron correctamente.`);
-        },
-        (error) => {
-          alert(`Ha ocurrido un error en el ingreso.`);
-          console.log(pedidoProductoData);
-        }
-      );
-    } else {
-      alert('Completa todos los campos antes de enviar los detalles del pedido.');
+
+  addDetalles() {
+    if (this.id_pedido === null) {
+      console.error('El id_pedido no está definido');
+      return;
     }
+  
+    this.detallesPedido.id_pedido = this.id_pedido;
+  
+    this.detallesService.createPedido_Producto(this.detallesPedido).subscribe(
+      (respuesta: any) => {
+        console.log('Detalles ingresados:', respuesta);
+        this.obtenerDetalles();
+      },
+      (error: any) => {
+        console.error('No se ingresaron los pedidos:', error);
+      }
+    );
   }
+  
   
 
   obtenerDetalles() {
