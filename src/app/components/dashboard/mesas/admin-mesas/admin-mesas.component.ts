@@ -30,7 +30,7 @@ export class AdminMesasComponent {
     const mesaId = this.activatedRoute.snapshot.params['id_mesa'];
 
     if (mesaId !== undefined) {
-      console.log('ID del vehículo a editar: ' + mesaId);
+      console.log('ID de la mesa a editar: ' + mesaId);
       this.cargarDatos(mesaId);
     } else {
       console.log('Selecciona la mesa para Editar');

@@ -4,12 +4,13 @@
     <div class="col">
       <h4 class="mb-3">DETALLES DEL PEDIDO</h4>
       <hr class="my-4">
-      <form class="needs-validation">
+      <form class="needs-validation" (ngSubmit)="submitForm()">
         <div class="row gy-3">
 
           <div class="col-md-9">
             <label for="cc-name" class="form-label">Escoger Producto</label>
-            <select class="form-select" id="productos" required (change)="onChange($event)">
+            <select class="form-select" id="productos" name="id_producto" required (change)="onChange($event)"
+              [(ngModel)]="selectedProductId">
               <option value="">Escoger...</option>
               <option *ngFor="let producto of productos" [value]="producto.id_producto">
                 {{ producto.nombre }}
@@ -19,20 +20,19 @@
 
           <div class="col-md-3">
             <label for="cc-number" class="form-label">Cantidad</label>
-            <input type="number" class="form-control" id="cc-number" min="1">
+            <input class="form-control" id="cantidad" name="cantidad" type="number" min="1" [(ngModel)]="formData.cantidad" required>
           </div>
-
+      
           <div class="col-mb-12">
             <label for="validationTextarea" class="form-label">Detalles del pedido</label>
-            <textarea class="form-control" id="validationTextarea" placeholder="Detalles del pedido..."
-              required></textarea>
+            <textarea class="form-control" id="detalle" name="detalle" type="text" placeholder="Detalles del pedido..." [(ngModel)]="formData.detalle" required></textarea>
           </div>
         </div>
 
         <hr class="my-4">
-
         <button class="w-100 btn btn-primary btn-lg" type="submit">Agregar Pedido</button>
       </form>
+
     </div>
 
     <!-- Derecha -->

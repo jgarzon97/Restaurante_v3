@@ -23,8 +23,8 @@ export class DetallesService {
     return this.http.get<Detalle[]>(`${this.apiUrl}/detallesProductos/${id}`);
   }
 
-  createPedido_Producto(pedidoData: Detalle[]): Observable<Detalle[]> {
-    return this.http.post<Detalle[]>(`${this.apiUrl}/pedidoProducto`, pedidoData);
+  createPedido_Producto(pedidoData: Detalle_pedido[]): Observable<Detalle_pedido[]> {
+    return this.http.post<Detalle_pedido[]>(`${this.apiUrl}/pedidoProducto`, pedidoData);
   }
 
   updatePedido_Producto(id: number, pedidoData: Detalle[]): Observable<Detalle[]> {
@@ -42,5 +42,12 @@ export interface Detalle {
   precio_unitario: number;
   cantidad_total: number;
   precio_total: number;
+  detalle: string;
+}
+
+export interface Detalle_pedido {
+  id_pedido: number;
+  id_producto: number;
+  cantidad: number;
   detalle: string;
 }
