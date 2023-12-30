@@ -1,9 +1,12 @@
 <div style="text-align: center;">
-    <h1><span class="badge bg-secondary">STOCK DE PRODUCTOS</span></h1>
+    <h1 style="padding: 10px"><span class="badge bg-secondary"> S T O C K - P R O D U C T O </span></h1>
     <form class="d-flex" role="search" (ngSubmit)="buscarProductos()">
         Nombre del Producto:
         <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" [(ngModel)]="busqueda"
-            name="busqueda" aria-label="Search" style="margin-right: 10px;" (ngModelChange)="buscarProductos()">
+            name="busqueda" aria-label="Search" style="margin-right: 10px;" title="Buscar por nombre"
+            (ngModelChange)="buscarProductos()">
+        <button type="button" class="btn btn-primary" title="Agregar producto" data-bs-toggle="modal"
+            data-bs-target="#modal_add_producto"> Agregar </button>
     </form>
     <hr>
 </div>
@@ -44,3 +47,51 @@
         </tr>
     </tbody>
 </table>
+
+<!-- Modal para Crear Mesa -->
+<div class="modal fade" id="modal_add_producto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">INGRESAR PRODUCTO</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3">
+                    <div class="mb-3">
+                        <label for="numMesa" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="numMesa" name="numMesa">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="capacidad" class="form-label">Stock</label>
+                        <input type="number" class="form-control" id="capacidad" name="capacidad" min="1">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefaultUsername" class="form-label">Precio</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="inputGroupPrepend2">$</span>
+                            <input type="number" class="form-control" id="validationDefaultUsername"
+                                aria-describedby="inputGroupPrepend2"  min="1" required>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="capacidad" class="form-label">Tiempo</label>
+                        <input type="time" class="form-control" id="capacidad" name="capacidad" min="0">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="capacidad" class="form-label">Categoria</label>
+                        <input type="number" class="form-control" id="capacidad" name="capacidad" min="0">
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#modal_add_categoria"> Crear </button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"> Agregar </button>
+            </div>
+        </div>
+    </div>
+</div>

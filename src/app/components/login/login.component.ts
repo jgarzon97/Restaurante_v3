@@ -14,8 +14,6 @@ export class LoginComponent {
   loading = false;
 
   constructor(
-    private loginService: AuthService,
-    private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router
     ) {

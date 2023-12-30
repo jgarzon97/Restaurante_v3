@@ -10,7 +10,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { RolesComponent } from './roles/roles.component';
 import { ProductosComponent } from './productos/productos.component';
-import { NuevosProductosComponent } from './productos/nuevos-productos/nuevos-productos.component';
 import { MesasComponent } from './mesas/mesas.component';
 import { AdminMesasComponent } from './mesas/admin-mesas/admin-mesas.component';
 import { NuevosComponent } from './roles/nuevos/nuevos.component';
@@ -27,7 +26,6 @@ import { UsuarioComponent } from './usuario/usuario.component';
     DashboardComponent,
     ProductosComponent,
     RolesComponent,
-    NuevosProductosComponent,
     MesasComponent,
     AdminMesasComponent,
     NuevosComponent,

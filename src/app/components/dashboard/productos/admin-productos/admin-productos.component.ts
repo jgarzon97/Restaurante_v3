@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Producto, ProductosService } from 'src/app/services/producto/productos.service';
 
 @Component({
@@ -6,12 +7,14 @@ import { Producto, ProductosService } from 'src/app/services/producto/productos.
   templateUrl: './admin-productos.component.html',
   styleUrls: ['./admin-productos.component.css']
 })
+
 export class AdminProductosComponent {
   productos: Producto[] = [];
   busqueda: string = '';
 
   constructor(
     private productoService : ProductosService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
