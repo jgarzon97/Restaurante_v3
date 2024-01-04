@@ -1,1 +1,39 @@
-<p>productos works!</p>
+<div class="container text-center">
+    <h1 style="padding: 10px"><span class="badge bg-secondary"> S T O C K - P R O D U C T O S </span></h1>
+    <form class="row d-flex" role="search" (ngSubmit)="buscarProductos()">
+        <div class="col-2">
+            <span class="text-primary">  Producto: </span>
+        </div>
+        <div class="col-10">
+            <input id="searchInput" class="form-control mr-sm-1" type="search" placeholder="Search"
+                [(ngModel)]="busqueda" name="busqueda" aria-label="Search" style="margin-right: 10px;"
+                title="Buscar por nombre" (ngModelChange)="buscarProductos()">
+        </div>
+    </form>
+    <hr>
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr style="text-align: center;">
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Stock</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Imagen</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let producto of productos; let i = index" style="text-align: center;">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.estado }}</td>
+            <td>{{ producto.nombre_categoria }}</td>
+            <td>{{ producto.imagen }}</td>
+        </tr>
+    </tbody>
+</table>

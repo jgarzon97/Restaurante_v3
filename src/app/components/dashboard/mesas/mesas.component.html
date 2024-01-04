@@ -11,6 +11,11 @@
                     <p class="card-text"><small class="text-body-secondary">Capacidad:
                         </small>{{mesa.capacidad}}</p>
                 </div>
+                <div class="container">
+                    <div class="row align-items-start">
+                        <button *ngIf="mesa.estado === 'Disponible'" type="button" class="btn btn-success btn-sm"
+                            (click)="crearPedido(id_usuario, mesa.id_mesa)" title="Reservar mesa">Reservar</button>
+                    </div>
             </div>
         </div>
     </div>
