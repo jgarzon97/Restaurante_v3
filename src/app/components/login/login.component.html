@@ -1,6 +1,9 @@
 <div class="body">
     <div class="wrapper">
         <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="Ingresar()" class="login">
+            <div>
+                <img src="./assets/image.png" class="rounded-image" width="100%">
+            </div>
             <p class="title">Log in</p>
             <input type="text" placeholder="Username" autofocus autocomplete="off" formControlName="user_usuario" />
             <i class="fa fa-user"></i>

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Detalle, Detalle_pedido, DetallesService } from 'src/app/services/pedido/detalles.service';
 import { Producto, ProductosService } from 'src/app/services/producto/productos.service';
+import { Cliente } from 'src/app/services/usuario/clientes.service';
 
 @Component({
   selector: 'app-detalles',
@@ -13,6 +14,7 @@ export class DetallesComponent {
   detalles: Detalle[] = [];
   detalle_pedido: Detalle_pedido[] = []
   productos: Producto[] = [];
+  clientes: Cliente[] = [];
 
   id_pedido: number | null = null;
   selectedProductId: number | undefined;
@@ -25,9 +27,19 @@ export class DetallesComponent {
     detalle: ' '
   };
 
+  newClient: any = {
+    cedula: null,
+    nombre: null,
+    apellido: null,
+    direccion: null,
+    email: null,
+    telefono: null
+  }
+
   constructor(
     private detallesService: DetallesService,
     private productosService: ProductosService,
+    private router: Router,
     private route: ActivatedRoute
   ) { }
 
@@ -38,8 +50,8 @@ export class DetallesComponent {
       this.id_pedido = Number(id_pedido);
     });
     // Usa el servicio de Producto para mostrarlo
-    this.productosService.getProductos().subscribe(productos => {
-      this.productos = productos;
+    this.productosService.getProductos().subscribe(producto => {
+      this.productos = producto;
     });
 
     this.obtenerDetalles();
@@ -72,6 +84,10 @@ export class DetallesComponent {
     );
   }
 
+  addCliente() {
+    this.router.navigate(['dashboard/clientes']);
+  }
+
   obtenerDetalles() {
     const idPedido = this.route.snapshot.paramMap.get('id_pedido');
     if (idPedido) {
@@ -91,7 +107,7 @@ export class DetallesComponent {
       console.log('No se encontró el ID del pedido.');
     }
   }
-
+  
   calcularTotales() {
     let cantidadConPrecioTotal = this.detalles.reduce((total, detalle) => {
       if (detalle.precio_total !== undefined && detalle.precio_total !== null && detalle.precio_total !== 0) {

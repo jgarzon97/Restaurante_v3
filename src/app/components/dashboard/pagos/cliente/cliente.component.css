@@ -1,0 +1,6 @@
+.img-medium {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px; /* Establece la altura máxima deseada para la imagen */
+  }
+  

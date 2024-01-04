@@ -49,26 +49,29 @@
                 <form class="row g-3">
                     <div class="mb-3">
                         <label for="usuario" class="form-label">Usuario</label>
-                        <input type="text" class="form-control" id="usuario" name="usuario" [(ngModel)]="newUser.user_usuario">
+                        <input type="text" class="form-control" id="usuario" name="usuario"
+                            [(ngModel)]="newUser.user_usuario">
                     </div>
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="newUser.nombre_user">
+                        <input type="text" class="form-control" id="nombre" name="nombre"
+                            [(ngModel)]="newUser.nombre_user">
                     </div>
                     <div class="mb-3">
                         <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="newUser.apellido_user">
+                        <input type="text" class="form-control" id="apellido" name="apellido"
+                            [(ngModel)]="newUser.apellido_user">
                     </div>
                     <div class="mb-3">
                         <label for="cc-name" class="form-label">Rol</label>
-                        <select class="form-select" id="productos" name="id_producto" required (change)="onChange($event)"
-                          [(ngModel)]="newUser.id_rol">
-                          <option value="">Escoger...</option>
-                          <option *ngFor="let rol of roles" [value]="rol.id_rol">
-                            {{ rol.tipo_rol }}
-                          </option>
+                        <select class="form-select" id="productos" name="id_producto" required
+                            (change)="onChange($event)" [(ngModel)]="newUser.id_rol">
+                            <option value="">Escoger...</option>
+                            <option *ngFor="let rol of roles" [value]="rol.id_rol">
+                                {{ rol.tipo_rol }}
+                            </option>
                         </select>
-                      </div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">

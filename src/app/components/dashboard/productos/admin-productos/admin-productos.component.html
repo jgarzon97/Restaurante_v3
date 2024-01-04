@@ -88,8 +88,14 @@
                         <input type="time" class="form-control" id="capacidad" name="capacidad" min="0">
                     </div>
                     <div class="col-md-6">
-                        <label for="capacidad" class="form-label">Categoria</label>
-                        <input type="number" class="form-control" id="capacidad" name="capacidad" min="0">
+                        <label for="cc-name" class="form-label">Rol</label>
+                        <select class="form-select" id="productos" name="id_producto" required
+                            (change)="onChange($event)" [(ngModel)]="newCatego.id_categoria">
+                            <option value="">Escoger...</option>
+                            <option *ngFor="let categoria of categorias" [value]="categoria.id_categoria">
+                                {{ categoria.nombre }}
+                            </option>
+                        </select>
                     </div>
                     <div class="col-md-4 d-flex align-items-end">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -117,12 +123,12 @@
                 <form class="row g-3">
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre">
+                        <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="newCatego.nombre">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary"> Agregar </button>
+                <button type="button" class="btn btn-primary" (click)="addCategoria()"> Agregar </button>
             </div>
         </div>
     </div>

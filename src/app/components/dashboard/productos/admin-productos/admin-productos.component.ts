@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Categoria, CategoriasService } from 'src/app/services/producto/categorias.service';
 import { Producto, ProductosService } from 'src/app/services/producto/productos.service';
 
 @Component({
@@ -10,11 +11,18 @@ import { Producto, ProductosService } from 'src/app/services/producto/productos.
 
 export class AdminProductosComponent {
   productos: Producto[] = [];
+  categorias: Categoria[] = [];
+
   busqueda: string = '';
+  selectedRolId: number | undefined;
+
+  newCatego: any = {
+    nombre: null,
+  };
 
   constructor(
     private productoService : ProductosService,
-    private router: Router,
+    private categoriasService: CategoriasService,
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +33,12 @@ export class AdminProductosComponent {
   visualizar() {
     this.productoService.getProductos().subscribe(response => {
       this.productos = response;
+    }, error => {
+      console.log(error);
+    });
+
+    this.categoriasService.getCategoria().subscribe(response => {
+      this.categorias = response;
     }, error => {
       console.log(error);
     });
@@ -40,5 +54,20 @@ export class AdminProductosComponent {
         producto.nombre.toLowerCase().includes(busquedaMinuscula)
       );
     }
+  }
+
+  addCategoria() {
+    this.categoriasService.createCategoria(this.newCatego).subscribe(
+      (respuesta: any) => {
+        console.log('Categoria creada:', respuesta);
+      },
+      (error: any) => {
+        console.error('Error al crear la categoria:', error);
+      }
+    );
+  }
+
+  onChange(event: any) {
+    this.selectedRolId = event.target.value;
   }
 }

@@ -13,12 +13,22 @@ export class ClientesService {
   constructor(private http: HttpClient) { }
 
   // Obtener todos los clientes
-  getClientes(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/clientes`);
+  getClientes(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(`${this.apiUrl}/clientes`);
   }
 
   // Crear un cliente
-  createCliente(clientData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/cliente`, clientData);
+  createCliente(clientData: Cliente): Observable<Cliente> {
+    return this.http.post<Cliente>(`${this.apiUrl}/cliente`, clientData);
   }
+}
+
+export interface Cliente {
+  id_cliente: number;
+  cedula: string;
+  nombre: string;
+  apellido: string;
+  direccion: string;
+  email: string;
+  telefono: string;
 }
