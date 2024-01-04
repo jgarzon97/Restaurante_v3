@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Factura, FacturasService } from 'src/app/services/pago/facturas.service';
 import { Detalle, Detalle_pedido, DetallesService } from 'src/app/services/pedido/detalles.service';
 import { Producto, ProductosService } from 'src/app/services/producto/productos.service';
-import { Cliente } from 'src/app/services/usuario/clientes.service';
+import { Cliente, ClientesService } from 'src/app/services/usuario/clientes.service';
 
 @Component({
   selector: 'app-detalles',
@@ -15,9 +16,11 @@ export class DetallesComponent {
   detalle_pedido: Detalle_pedido[] = []
   productos: Producto[] = [];
   clientes: Cliente[] = [];
+  facturas: Factura[] = [];
 
   id_pedido: number | null = null;
   selectedProductId: number | undefined;
+  selectedClienteId: number | undefined;
 
   totalPrecio: number = 0;
 
@@ -27,21 +30,16 @@ export class DetallesComponent {
     detalle: ' '
   };
 
-  newClient: any = {
-    cedula: null,
-    nombre: null,
-    apellido: null,
-    direccion: null,
-    email: null,
-    telefono: null
-  }
-
   constructor(
     private detallesService: DetallesService,
     private productosService: ProductosService,
+    private clientesService: ClientesService,
+    private facturasService: FacturasService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {
+    this.getClientes();
+  }
 
   ngOnInit(): void {
     // Captura el id_pedido
@@ -61,10 +59,23 @@ export class DetallesComponent {
     this.selectedProductId = event.target.value;
   }
 
-  cobrar() {
-
+  getClientes(): void {
+    this.clientesService.getClientes().subscribe(clientes => {
+      this.clientes = clientes;
+    });
   }
 
+  onChangeC(event: Event): void {
+    const target = event.target as HTMLSelectElement;
+    if (target) {
+      const selectedOption = target.options[target.selectedIndex];
+      if (selectedOption) {
+        this.selectedClienteId = parseInt(selectedOption.value, 10);
+        console.log('Cliente seleccionado:', this.selectedClienteId);
+      }
+    }
+  }
+  
   addDetalles() {
     if (this.id_pedido === null) {
       console.error('El id_pedido no está definido');
@@ -107,7 +118,7 @@ export class DetallesComponent {
       console.log('No se encontró el ID del pedido.');
     }
   }
-  
+
   calcularTotales() {
     let cantidadConPrecioTotal = this.detalles.reduce((total, detalle) => {
       if (detalle.precio_total !== undefined && detalle.precio_total !== null && detalle.precio_total !== 0) {
@@ -122,5 +133,22 @@ export class DetallesComponent {
       }
       return total;
     }, 0);
+  }
+
+  factura() {
+    if (!this.id_pedido || !this.selectedClienteId) {
+      console.error('El id del pedido o el id del cliente no están definidos');
+      return;
+    }
+
+    this.facturasService.createFactura(this.id_pedido, this.selectedClienteId).subscribe(
+      (respuesta: Factura) => {
+        console.log('Factura generada:', respuesta);
+        // Realiza acciones adicionales si es necesario después de generar la factura
+      },
+      (error: any) => {
+        console.error('Error al generar la factura:', error);
+      }
+    );
   }
 }
