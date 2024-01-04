@@ -43,6 +43,6 @@ export interface Usuario {
   pass_usuario: string;
   nombre_user: string;
   apellido_user: string;
-  id_rol: number;
+  tipo_rol: number;
   estado: string;
 }

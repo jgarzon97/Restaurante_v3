@@ -2,8 +2,7 @@
 .pendiente,
 .cancelado {
   display: flexbox;
-  border-radius: 4px;
-  cursor: pointer;
+  border-radius: 13px;
   text-align: center;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -13,6 +12,7 @@
 .pendiente {
   color: white;
   background-color: red;
+  cursor: pointer;
 }
 
 /* Estilo específico para el estado "Cancelado" */

@@ -1,12 +1,21 @@
-<div style="text-align: center;">
-    <h1 style="padding: 10px"><span class="badge bg-secondary"> S T O C K - P R O D U C T O </span></h1>
-    <form class="d-flex" role="search" (ngSubmit)="buscarProductos()">
-        Nombre del Producto:
-        <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" [(ngModel)]="busqueda"
-            name="busqueda" aria-label="Search" style="margin-right: 10px;" title="Buscar por nombre"
-            (ngModelChange)="buscarProductos()">
-        <button type="button" class="btn btn-primary" title="Agregar producto" data-bs-toggle="modal"
-            data-bs-target="#modal_add_producto"> Agregar </button>
+<div class="container text-center">
+    <h1 style="padding: 10px"><span class="badge bg-secondary"> S T O C K - P R O D U C T O S </span></h1>
+    <form class="row d-flex" role="search" (ngSubmit)="buscarProductos()">
+        <div class="col">
+            <span> Nombre del Producto: </span>
+        </div>
+        <div class="col-8">
+            <input id="searchInput" class="form-control mr-sm-1" type="search" placeholder="Search"
+                [(ngModel)]="busqueda" name="busqueda" aria-label="Search" style="margin-right: 10px;"
+                title="Buscar por nombre" (ngModelChange)="buscarProductos()">
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-primary" title="Agregar nuevo producto" data-bs-toggle="modal"
+                data-bs-target="#modal_add_producto">
+                <i class="bi bi-plus-circle me-1"></i>
+                <span class="ms-1">Nuevo</span>
+            </button>
+        </div>
     </form>
     <hr>
 </div>
@@ -21,7 +30,6 @@
             <th scope="col">Estado</th>
             <th scope="col">Categoria</th>
             <th scope="col">Imagen</th>
-            <th scope="col">Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -60,7 +68,7 @@
             <div class="modal-body">
                 <form class="row g-3">
                     <div class="mb-3">
-                        <label for="numMesa" class="form-label">Nombre</label>
+                        <label for="numMesa" class="form-label">Nombre del producto</label>
                         <input type="text" class="form-control" id="numMesa" name="numMesa">
                     </div>
                     <div class="col-md-4">
@@ -72,7 +80,7 @@
                         <div class="input-group">
                             <span class="input-group-text" id="inputGroupPrepend2">$</span>
                             <input type="number" class="form-control" id="validationDefaultUsername"
-                                aria-describedby="inputGroupPrepend2"  min="1" required>
+                                aria-describedby="inputGroupPrepend2" min="1" required>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -85,7 +93,7 @@
                     </div>
                     <div class="col-md-4 d-flex align-items-end">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#modal_add_categoria"> Crear </button>
+                            data-bs-target="#modal_add_categoria"> Crear </button>
                     </div>
                 </form>
             </div>

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormControl } from '@angular/forms';
 import { Detalle, Detalle_pedido, DetallesService } from 'src/app/services/pedido/detalles.service';
 import { Producto, ProductosService } from 'src/app/services/producto/productos.service';
 
@@ -49,7 +48,6 @@ export class DetallesComponent {
     this.selectedProductId = event.target.value;
   }
 
-
   addDetalles() {
     if (this.id_pedido === null) {
       console.error('El id_pedido no está definido');
@@ -68,8 +66,6 @@ export class DetallesComponent {
       }
     );
   }
-  
-  
 
   obtenerDetalles() {
     const idPedido = this.route.snapshot.paramMap.get('id_pedido');

@@ -1,5 +1,5 @@
 <div style="text-align: center;">
-    <h1><span class="badge bg-secondary">LISTADO DE PEDIDOS</span></h1>
+    <h1 style="padding: 10px"><span class="badge bg-secondary">L I S T A D O - P E D I D O S</span></h1>
     <hr>
 </div>
 
@@ -22,15 +22,16 @@
             <td>{{ pedido.id_usuario }}</td>
             <td>{{ pedido.id_mesa }}</td>
             <td [ngClass]="pedido.estado === 'Pendiente' ? 'pendiente' : 'cancelado'">
-                {{ pedido.estado }}
+                <ng-container *ngIf="pedido.estado === 'Pendiente'; else otherState">
+                    <a title="Detalles Pedido" (click)="verDetallePedido(pedido.id_pedido)">
+                        {{ pedido.estado }}
+                    </a>
+                </ng-container>
+                <ng-template #otherState>
+                    {{ pedido.estado }}
+                </ng-template>
             </td>
             <td>
-                <!-- Ícono de Listar -->
-                <a title="Detalles Pedido">
-                    <i class="bi bi-pencil-square" (click)="verDetallePedido(pedido.id_pedido)"></i>
-                </a>
-                &nbsp; <!-- Espacio entre íconos -->
-                <!-- Ícono de eliminar -->
                 <a title="Eliminar">
                     <i class="bi bi-trash" (click)="borrarPedido(pedido.id_pedido)"></i>
                 </a>
