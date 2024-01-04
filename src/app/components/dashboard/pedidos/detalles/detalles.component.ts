@@ -13,12 +13,11 @@ export class DetallesComponent {
   detalles: Detalle[] = [];
   detalle_pedido: Detalle_pedido[] = []
   productos: Producto[] = [];
-  id_pedido: number | null = null;
 
+  id_pedido: number | null = null;
   selectedProductId: number | undefined;
 
   totalPrecio: number = 0;
-  numeroRuta: number = 0;
 
   detallesPedido: any = {
     id_producto: null,
@@ -42,10 +41,16 @@ export class DetallesComponent {
     this.productosService.getProductos().subscribe(productos => {
       this.productos = productos;
     });
+
+    this.obtenerDetalles();
   }
 
   onChange(event: any) {
     this.selectedProductId = event.target.value;
+  }
+
+  cobrar() {
+
   }
 
   addDetalles() {
@@ -53,9 +58,9 @@ export class DetallesComponent {
       console.error('El id_pedido no está definido');
       return;
     }
-  
+
     this.detallesPedido.id_pedido = this.id_pedido;
-  
+
     this.detallesService.createPedido_Producto(this.detallesPedido).subscribe(
       (respuesta: any) => {
         console.log('Detalles ingresados:', respuesta);

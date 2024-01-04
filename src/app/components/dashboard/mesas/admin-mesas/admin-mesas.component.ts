@@ -28,17 +28,15 @@ export class AdminMesasComponent {
     private activatedRoute: ActivatedRoute
   ) {
     const mesaId = this.activatedRoute.snapshot.params['id_mesa'];
+  }
 
+  cargarDatos(mesaId: number) {
     if (mesaId !== undefined) {
       console.log('ID de la mesa a editar: ' + mesaId);
       this.cargarDatos(mesaId);
     } else {
       console.log('Selecciona la mesa para Editar');
     }
-  }  
-
-  cargarDatos(mesaId: number) {
-
   }
 
   ngOnInit(): void {
@@ -95,9 +93,9 @@ export class AdminMesasComponent {
   // Función para modificar la mesa con el id_mesa específico
   modificar(id_mesa: number) {
     console.log(`Modo edición de la Mesa ${id_mesa}`)
-    
+
   }
-  
+
   eliminar(id_mesa: number) {
 
   }

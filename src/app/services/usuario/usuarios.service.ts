@@ -32,8 +32,8 @@ export class UsuariosService {
   }
 
   // Crear un nuevo usuario
-  createUsuario(usuarioData: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.apiUrl}/usuario`, usuarioData);
+  createUsuario(usuarioData: Usuario): Observable<NewUsuario> {
+    return this.http.post<NewUsuario>(`${this.apiUrl}/usuario`, usuarioData);
   }
 }
 
@@ -45,4 +45,11 @@ export interface Usuario {
   apellido_user: string;
   tipo_rol: number;
   estado: string;
+}
+
+export interface NewUsuario {
+  user_usuario: number;
+  nombre_user: string;
+  apellido_user: string;
+  tipo_rol: number;
 }

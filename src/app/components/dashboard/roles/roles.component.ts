@@ -15,18 +15,11 @@ export class RolesComponent {
 
   newUser: any = {
     user_usuario: null,
+    pass_usuario: 'default',
     nombre_user: null,
     apellido_user: null,
     tipo_rol: null,
-    estado: 'Activo'
   };
-
-  verRol: any = {
-    id_rol: null,
-    tipo_rol: null,
-    detalle_rol: null,
-    estado: 'Activo'
-  }
 
   constructor(
     private usuarioService: UsuariosService,
@@ -51,7 +44,8 @@ export class RolesComponent {
 
   addUser(): void {
     this.usuarioService.createUsuario(this.newUser).subscribe(
-      () => {
+      (respuesta: any) => {
+        console.log('Usuario ingresado:', respuesta);
         this.visualizar();
       },
       (error: any) => {
